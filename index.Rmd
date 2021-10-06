@@ -1,0 +1,23 @@
+---
+title: "Developing Data Products - R Markdown Presentation & Plotly"
+author: "Victor Yeste"
+date: "10/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Area from major municipalities from Spain
+
+At the next plot we can see the six only municipalities from Spain with more than 500.000 people and their area in km^2.
+
+```{r cities}
+library(plotly)
+cities <- data.frame(name = c("Madrid", "Barcelona", "Valencia", "Sevilla", "Zaragoza", "Málaga"),
+    pop = c(3334730, 1664182, 800215, 691395, 681877, 578460),
+    area = c(604.45, 101.35, 134.65, 140.8, 973.78, 398.25),
+    col = c("> 1 million pop", "> 1 million pop", "> 750 thousand pop", "> 500 thousand pop", "> 500 thousand pop", "> 500 thousand pop"))
+plot_ly(cities, x = cities$pop, y = cities$area, mode = "markers", color = as.factor(cities$col))
+```
